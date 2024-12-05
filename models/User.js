@@ -1,25 +1,31 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  walletAddress: {
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true
-  },
-  name: {
-    type: String,
     trim: true
   },
+  walletAddress: {
+    type: String,
+    required: true,
+    unique: true
+  },
   avatar: {
-    type: String
+    type: String,
+    required: true
   },
   nonce: {
     type: String,
-    required: true
+    required: true,
+    default: () => Math.floor(Math.random() * 1000000).toString()
   }
-}, {
-  timestamps: true
 });
 
 module.exports = mongoose.model('User', userSchema); 

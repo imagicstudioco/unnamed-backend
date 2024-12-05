@@ -6,6 +6,7 @@ const campaignRoutes = require('./routes/campaigns');
 const userRoutes = require('./routes/users');
 const donationRoutes = require('./routes/donations');
 const commentRoutes = require('./routes/comments');
+const seedDatabase = require('./seeds/seed');
 
 dotenv.config();
 
@@ -15,9 +16,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Database connection
+// Database connection and seeding
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
+  .then(async () => {
+    console.log('Connected to MongoDB');
+    
+    // Check if seeding is needed (you can add this to your .env)
+    if (process.env.SEED_DATABASE === 'true') {
+      await seedDatabase();
+    }
+  })
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // Routes
@@ -26,7 +34,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/comments', commentRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 }); 
