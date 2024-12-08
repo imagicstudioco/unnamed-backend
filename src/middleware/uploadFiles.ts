@@ -34,7 +34,7 @@ export const uploadCampaignImageMedia = multer({
   },
   storage: new CloudinaryStorage({
     cloudinary,
-    params: (req, file) => {
+    params: (req: Request, file: Express.Multer.File) => {
       return {
         folder: "campaign/image/",
         public_id: `${Date.now()}-${Math.round(Math.random() * 1e9)}`,
@@ -62,7 +62,7 @@ export const uploadUserAvatarMedia = multer({
   },
   storage: new CloudinaryStorage({
     cloudinary,
-    params: (req, file) => {
+    params: (req: Request, file: Express.Multer.File) => {
       return {
         folder: "user/avatar/",
         public_id: `${Date.now()}-${Math.round(Math.random() * 1e9)}`,
