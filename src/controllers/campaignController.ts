@@ -68,7 +68,7 @@ export const createCampaignController = async (
       status,
       raised,
       title,
-      userId,
+      userId: toObjectId(userId),
     });
 
     if (!success) {
@@ -232,12 +232,11 @@ export const deleteCampaignController = async (
 ): Promise<any> => {
   try {
     const { _id } = req.params;
-
     const { _id: userId } = req.user;
 
     const { data, error, success } = await deleteCampaign({
-      _id: new ObjectId(_id),
-      userId,
+      _id: toObjectId(_id),
+      userId: toObjectId(userId),
     });
 
     if (!success) {

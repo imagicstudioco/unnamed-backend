@@ -33,9 +33,9 @@ export const createCommentController = async (
     const { _id: userId } = req.user;
 
     const { data, error, success } = await createComment({
-      campaignId,
+      campaignId: toObjectId(campaignId),
       content,
-      userId,
+      userId: toObjectId(userId),
     });
 
     if (!success) {
@@ -77,8 +77,8 @@ export const deleteCommentController = async (
     const { _id: userId } = req.user;
 
     const { data, error, success } = await deleteComment({
-      _id: new ObjectId(_id),
-      userId,
+      _id: toObjectId(_id),
+      userId: toObjectId(userId),
     });
 
     if (!success) {
