@@ -13,6 +13,7 @@ import { RequestBodyError } from "@/utils/errors";
 // utils/models
 import { createUser, getUser, updateUser } from "@/utils/models/user";
 import { IUpdateUserPayload } from "@/utils/models/interfaces/user";
+import { toObjectId } from "@/utils/config/mongoose";
 
 const { JWT_SECRET } = process.env;
 
@@ -134,7 +135,7 @@ export const getProfileController = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    const { data, error, success } = await getUser({ _id: req.user._id });
+    const { data, error, success } = await getUser({ _id: toObjectId(req.user._id) });
 
     if (!success) {
       throw error;
@@ -172,7 +173,7 @@ export const updateProfileController = async (
     }
 
     const { data, error, success } = await updateUser(
-      { _id: req.user._id },
+      { _id: toObjectId(req.user._id) },
       updatePayload!
     );
 

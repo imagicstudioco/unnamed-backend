@@ -20,6 +20,7 @@ import {
   getCampaign,
   updateCampaign,
 } from "@/utils/models/campaign";
+import { toObjectId } from "@/utils/config/mongoose";
 
 const ObjectId = Schema.ObjectId;
 
@@ -204,7 +205,7 @@ export const updateCampaignController = async (
 
     if (updatePayload) {
       ({ data, error, success } = await updateCampaign(
-        { _id: new ObjectId(_id), userId },
+        { _id: toObjectId(_id), userId: toObjectId(userId) },
         updatePayload
       ));
     }

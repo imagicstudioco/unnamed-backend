@@ -8,6 +8,8 @@ import { checkForObjectKeys } from "@/utils/config/check";
 import { RequestBodyError } from "@/utils/errors";
 // utils/models
 import { createComment, deleteComment } from "@/utils/models/comment";
+// utils/config/mongoose
+import { toObjectId } from "@/utils/config/mongoose";
 
 const ObjectId = Schema.ObjectId;
 
@@ -54,7 +56,7 @@ export const getCommentController = async (
   try {
     const { campaignId } = req.params;
 
-    const data = await Comment.find({ campaignId: new ObjectId(campaignId) })
+    const data = await Comment.find({ campaignId: toObjectId(campaignId) })
       .populate("user", "name avatar")
       .sort({ createdAt: -1 });
 
