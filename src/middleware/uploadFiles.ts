@@ -1,5 +1,6 @@
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-import multer from "multer";
+import multer, { FileFilterCallback } from "multer";
+import { Request } from "express";
 // config
 import cloudinary from "@/config/cloudinary";
 // utils/errors
@@ -15,7 +16,7 @@ const acceptedImageMimeTypes = [
 const maxFileSize = 15 * 1024 * 1024;
 
 export const uploadCampaignImageMedia = multer({
-  fileFilter: (req, file, cb) => {
+  fileFilter: (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
     if (!acceptedImageMimeTypes.includes(file.mimetype)) {
       return cb(
         new FileUploadError(
@@ -43,7 +44,7 @@ export const uploadCampaignImageMedia = multer({
 });
 
 export const uploadUserAvatarMedia = multer({
-  fileFilter: (req, file, cb) => {
+  fileFilter: (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
     if (!acceptedImageMimeTypes.includes(file.mimetype)) {
       return cb(
         new FileUploadError(
