@@ -11,8 +11,6 @@ import { createComment, deleteComment } from "@/utils/models/comment";
 // utils/config/mongoose
 import { toObjectId } from "@/utils/config/mongoose";
 
-const ObjectId = Schema.ObjectId;
-
 export const createCommentController = async (
   req: Request,
   res: Response,
