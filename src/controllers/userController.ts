@@ -4,6 +4,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 // config
 import cloudinary from "@/config/cloudinary";
+import { JWT_SECRET } from "@/config";
 // models
 import User from "@/models/User";
 // utils/config
@@ -14,8 +15,6 @@ import { RequestBodyError } from "@/utils/errors";
 import { createUser, getUser, updateUser } from "@/utils/models/user";
 import { IUpdateUserPayload } from "@/utils/models/interfaces/user";
 import { toObjectId } from "@/utils/config/mongoose";
-
-const { JWT_SECRET } = process.env;
 
 // Generate nonce for wallet signature
 const generateNonce = () => {

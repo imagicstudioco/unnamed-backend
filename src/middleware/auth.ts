@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { Types } from "mongoose";
 import jwt from "jsonwebtoken";
 // config
-import { JWT_SECRET } from "@/config/jwt";
+import { JWT_SECRET } from "@/config";
 // utils/errors
 import { AuthError } from "@/utils/errors";
 // utils/models
