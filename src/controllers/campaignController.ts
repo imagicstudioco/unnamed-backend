@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Schema } from "mongoose";
+import { Schema, Types } from "mongoose";
 // config
 import cloudinary from "@/config/cloudinary";
 // models
@@ -205,7 +205,10 @@ export const updateCampaignController = async (
 
     if (updatePayload) {
       ({ data, error, success } = await updateCampaign(
-        { _id: toObjectId(_id), userId: toObjectId(userId) },
+        { 
+          _id: toObjectId(_id), 
+          userId: toObjectId(userId) 
+        },
         updatePayload
       ));
     }

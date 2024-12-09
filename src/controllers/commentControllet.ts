@@ -73,7 +73,6 @@ export const deleteCommentController = async (
 ): Promise<any> => {
   try {
     const { _id } = req.params;
-
     const { _id: userId } = req.user;
 
     const { data, error, success } = await deleteComment({
