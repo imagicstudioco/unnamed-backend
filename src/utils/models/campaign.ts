@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, Types } from "mongoose";
 // errors
 import { CampaignError } from "@/utils/errors";
 // interfaces
@@ -19,7 +19,7 @@ export const createCampaign = async (
 ): Promise<ICampaignResponse> => {
   let response: ICampaignResponse = {
     data: {
-      _id: new ObjectId(""),
+      _id: new Types.ObjectId(),
       category: "",
       description: "",
       endDate: new Date(),
@@ -31,7 +31,7 @@ export const createCampaign = async (
       status: "",
       raised: 0,
       title: "",
-      userId: new ObjectId(""),
+      userId: new Types.ObjectId(),
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -94,7 +94,7 @@ export const getCampaign = async (
 ): Promise<ICampaignResponse> => {
   let response: ICampaignResponse = {
     data: {
-      _id: new ObjectId(""),
+      _id: new Types.ObjectId(),
       category: "",
       description: "",
       endDate: new Date(),
@@ -106,7 +106,7 @@ export const getCampaign = async (
       status: "",
       raised: 0,
       title: "",
-      userId: new ObjectId(""),
+      userId: new Types.ObjectId(),
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -172,7 +172,7 @@ export const updateCampaign = async (
 ): Promise<ICampaignResponse> => {
   let response: ICampaignResponse = {
     data: {
-      _id: new ObjectId(""),
+      _id: new Types.ObjectId(),
       category: "",
       description: "",
       endDate: new Date(),
@@ -184,7 +184,7 @@ export const updateCampaign = async (
       status: "",
       raised: 0,
       title: "",
-      userId: new ObjectId(""),
+      userId: new Types.ObjectId(),
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -255,7 +255,7 @@ export const deleteCampaign = async (
 ): Promise<ICampaignResponse> => {
   let response: ICampaignResponse = {
     data: {
-      _id: new ObjectId(""),
+      _id: new Types.ObjectId(),
       category: "",
       description: "",
       endDate: new Date(),
@@ -267,7 +267,7 @@ export const deleteCampaign = async (
       status: "",
       raised: 0,
       title: "",
-      userId: new ObjectId(""),
+      userId: new Types.ObjectId(),
       createdAt: new Date(),
       updatedAt: new Date(),
     },

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 // models
 import Campaign from "@/models/Campaign";
 import User from "@/models/User";
@@ -37,7 +37,7 @@ async function seedDatabase() {
         raised: 15000,
         status: "active",
         title: "Medical Support Fund",
-        userId: user._id,
+        userId: user._id as Types.ObjectId,
       },
       {
         category: "education",
@@ -52,7 +52,7 @@ async function seedDatabase() {
         raised: 8000,
         status: "completed",
         title: "Education for All",
-        userId: user._id,
+        userId: user._id as Types.ObjectId,
       },
       {
         category: "environment",
@@ -66,7 +66,7 @@ async function seedDatabase() {
         raised: 12000,
         status: "cancelled",
         title: "Environmental Conservation",
-        userId: user._id,
+        userId: user._id as Types.ObjectId,
       },
     ];
 
