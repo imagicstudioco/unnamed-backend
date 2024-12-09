@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Types } from "mongoose";
 import { IGenericResponse, RequireAtLeastOne } from ".";
 // models
 import { IMedia } from "@/models";
@@ -13,7 +13,7 @@ export interface ICreateUserPayload {
 }
 
 export interface TGetUser {
-  _id?: Schema.Types.ObjectId;
+  _id?: Types.ObjectId;
   nonce?: string;
   walletAddress?: string;
 }
