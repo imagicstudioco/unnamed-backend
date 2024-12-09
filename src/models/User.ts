@@ -1,11 +1,11 @@
-import { Model, model, Schema } from "mongoose";
+import { Model, model, Schema, Types } from "mongoose";
 // .
 import { IMedia, mediaSchema } from ".";
 // utils/errors
 import { UserError } from "@/utils/errors";
 
 export interface IUser {
-  _id?: Schema.Types.ObjectId;
+  _id?: Types.ObjectId;
   avatar?: IMedia;
   email: string;
   name: string;

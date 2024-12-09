@@ -1,9 +1,9 @@
-import { Model, model, Schema } from "mongoose";
+import { Model, model, Schema, Types } from "mongoose";
 // .
 import { IMedia, mediaSchema } from ".";
 
 export interface ICampaign {
-  _id?: Schema.Types.ObjectId;
+  _id?: Types.ObjectId;
   category: string;
   description: string;
   endDate: Date;
@@ -12,7 +12,7 @@ export interface ICampaign {
   status: string;
   raised: number;
   title: string;
-  userId: Schema.Types.ObjectId;
+  userId: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
