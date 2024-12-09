@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Types } from "mongoose";
 import { IGenericResponse, RequireAtLeastOne } from ".";
 // models
 import { IMedia } from "@/models";
@@ -13,14 +13,15 @@ export interface ICreateCampaignPayload {
   status: string;
   raised: number;
   title: string;
-  userId: Schema.Types.ObjectId;
+  userId: Types.ObjectId;
 }
 
 export interface IGetCampaignPayload {
-  _id: Schema.Types.ObjectId;
-  userId: Schema.Types.ObjectId;
+  _id: Types.ObjectId;
+  userId: Types.ObjectId;
 }
 
+// Rest of the interfaces remain the same
 export interface TUpdateCampaign {
   category: string;
   description: string;

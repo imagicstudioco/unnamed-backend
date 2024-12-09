@@ -2,8 +2,6 @@ import { Model, model, Schema } from "mongoose";
 // .
 import { IMedia, mediaSchema } from ".";
 
-const ObjectId = Schema.ObjectId;
-
 export interface ICampaign {
   _id?: Schema.Types.ObjectId;
   category: string;
@@ -73,7 +71,7 @@ const campaignSchema = new Schema<ICampaignSchema>(
     userId: {
       ref: "User",
       required: [true, "`user` field is required"],
-      type: ObjectId,
+      type: Schema.Types.ObjectId,
     },
   },
   {
