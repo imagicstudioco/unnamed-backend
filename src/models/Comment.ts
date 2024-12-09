@@ -1,7 +1,5 @@
 import { Model, model, Schema } from "mongoose";
 
-const ObjectId = Schema.ObjectId;
-
 export interface IComment {
   _id?: Schema.Types.ObjectId;
   campaignId: Schema.Types.ObjectId;
@@ -18,7 +16,7 @@ const commentSchema = new Schema<ICommentSchema>(
     campaignId: {
       ref: "Campaign",
       required: [true, "`campaign` field is required"],
-      type: ObjectId,
+      type: Schema.Types.ObjectId,
     },
     content: {
       required: [true, "`content` field is required"],
@@ -28,7 +26,7 @@ const commentSchema = new Schema<ICommentSchema>(
     userId: {
       ref: "User",
       required: [true, "`user` field is required"],
-      type: ObjectId,
+      type: Schema.Types.ObjectId,
     },
   },
   {

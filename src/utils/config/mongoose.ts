@@ -1,5 +1,5 @@
-import { Schema } from "mongoose";
+import { Types } from "mongoose";
 
-export const toObjectId = (id: string): Schema.Types.ObjectId => {
-  return new Schema.Types.ObjectId(id);
+export const toObjectId = (id: string): Types.ObjectId => {
+  return new Types.ObjectId(id);
 };
