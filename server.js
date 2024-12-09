@@ -16,23 +16,61 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Database connection and seeding
-mongoose.connect(process.env.MONGODB_URI)
-  .then(async () => {
-    console.log('Connected to MongoDB');
-    
-    // Check if seeding is needed (you can add this to your .env)
-    if (process.env.SEED_DATABASE === 'true') {
-      await seedDatabase();
-    }
-  })
-  .catch((err) => console.error('MongoDB connection error:', err));
+// Database connection
+let cachedDb = null;
+
+async function connectToDatabase() {
+  if (cachedDb) {
+    return cachedDb;
+  }
+  
+  const db = await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
+  });
+  
+  cachedDb = db;
+  return db;
+}
+
+// Routes with async DB connection
+app.use('/api/campaigns', async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    return res.status(500).json({ message: 'Database connection failed' });
+  }
+}, campaignRoutes);
+
+app.use('/api/users', async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    return res.status(500).json({ message: 'Database connection failed' });
+  }
+}, userRoutes);
+
+app.use('/api/donations', async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    return res.status(500).json({ message: 'Database connection failed' });
+  }
+}, donationRoutes);
 
 // Routes
 app.use('/api/campaigns', campaignRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/comments', commentRoutes);
+
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
